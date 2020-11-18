@@ -50,6 +50,7 @@ router.get('/', async (req, res) => {
     // to multiple users
     assigmentQ.add(async () => {
       var username = req.session.username
+      var userid = req.session.userid
 
       if (username) {
         const valid = await users.isUserAssignmentValid(username)
@@ -80,6 +81,7 @@ router.get('/', async (req, res) => {
 
         var subs = [
           ['USERNAME', username],
+          ['USER_ID', userid],
           ['EMAIL', email],
           ['LAB_TITLE', title],
           ['LAB_DURATION_HOURS', config.eventHours],
